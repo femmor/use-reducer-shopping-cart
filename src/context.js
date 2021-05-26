@@ -16,6 +16,14 @@ export const initialState = {
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
+  // Remove single item
+  const removeItem = id => {
+    dispatch({
+      type: "REMOVE_ITEM",
+      payload: id
+    })
+  }
+
   // Clear cart
   const clearCart = () => {
     dispatch({
@@ -28,6 +36,7 @@ export const AppProvider = ({ children }) => {
       value={{
         ...state,
         clearCart,
+        removeItem,
       }}
     >
       {children}
